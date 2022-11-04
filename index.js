@@ -1,3 +1,5 @@
+import plataform from '../imagens/Platform_C.png'
+
 const canvas = document.querySelector('canvas')
 const c = canvas.getContext('2d')
 
@@ -38,7 +40,7 @@ class Player {
 } 
 
 class Plataform {
-    constructor({ x, y}) {
+    constructor({ x, y, image}) {
         this.position = {
         x,
         y
@@ -46,22 +48,30 @@ class Plataform {
 
     this.width = 200
     this.height = 20
+
+    this.image = image
     }
 
     draw() {
-        c.fillStyle = 'green'
-        c.fillRect(this.position.x, this.position.y, this.width, this.height)
+       c.drawImage(this.image, this.position.x, this.position.y)
     }
 }
+
+const image= new Image()
+image.src = plataform
 
 const player = new Player()
 const plataforms = 
 [new Plataform({
     x: 200, 
-    y:500}), 
+    y:500,
+    image
+  }), 
 new Plataform({
     x:500, 
-    y:80})]
+    y:80,
+    image
+})]
 
 const keys = {
    right: {
