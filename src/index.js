@@ -1,4 +1,4 @@
-import plataform from '../imagens/Platform_C.png'
+import platform from '../imagens/Platform_C.png'
 
 const canvas = document.querySelector('canvas')
 const c = canvas.getContext('2d')
@@ -39,7 +39,7 @@ class Player {
     }
 } 
 
-class Plataform {
+class Platform {
     constructor({ x, y, image}) {
         this.position = {
         x,
@@ -58,16 +58,16 @@ class Plataform {
 }
 
 const image= new Image()
-image.src = plataform
+image.src = platform
 
 const player = new Player()
-const plataforms = 
-[new Plataform({
+const platforms = 
+[new Platform({
     x: 200, 
     y:500,
     image
   }), 
-new Plataform({
+new Platform({
     x:500, 
     y:80,
     image
@@ -88,8 +88,8 @@ function animate() {
     requestAnimationFrame(animate)
     c.clearRect(0, 0, canvas.width, canvas.height)
     player.update()
-    plataforms.forEach(plataform => {
-    plataform.draw()
+    platforms.forEach(platform => {
+    platform.draw()
     })
 
     if (keys.right.pressed && player.position.x < 400) {
@@ -101,27 +101,27 @@ function animate() {
 
       if (keys.right.pressed) {
         scrollOffset += 5
-        plataforms.forEach((plataform) => {
-            plataform.position.x -= 5
+        platforms.forEach((platform) => {
+            platform.position.x -= 5
         })
     } else if (keys.left.pressed) {
         scrollOffset -= 5
 
-      plataforms.forEach((plataform) => {
-        plataform.position.x += 5
+      platforms.forEach((platform) => {
+        platform.position.x += 5
       })
     }
 }
 
 console.log(scrollOffset)
 
-    plataforms.forEach((plataform) => {
+    platforms.forEach((platform) => {
     if (
-        player.position.y + player.height <= plataform.position.y &&
+        player.position.y + player.height <= platform.position.y &&
         player.position.y + player.height + player.velocity.y >= 
-        plataform.position.y &&
-        player.position.x + player.width >= plataform.position.x && 
-        player.position.x <= plataform.position.x + plataform.width
+        platform.position.y &&
+        player.position.x + player.width >= platform.position.x && 
+        player.position.x <= platform.position.x + platform.width
     ) {
     player.velocity.y = 0
     } 
